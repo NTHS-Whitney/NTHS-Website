@@ -1,0 +1,29 @@
+@keyframes blink {
+    0% { opacity: 1; }
+    40% {opacity: 1;}
+    60% {opacity: 0;}
+    100% {opacity: 0;}
+}
+
+.typewriter {
+    font-size: inherit;
+    color: inherit;
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    vertical-align: top;
+}
+
+.input-cursor {
+    display: inline-block;
+    z-index: 1;
+    width: 2px;
+    height: 1.1em;
+    background-color: black;
+    margin-left: 0.15em;
+    animation: blink .6s linear infinite alternate;
+}
+
+#dark .input-cursor {
+    background-color: #eee;
+}

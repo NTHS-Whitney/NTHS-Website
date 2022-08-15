@@ -1,14 +1,36 @@
+@keyframes announcement-open {
+    0% {
+        height: 0;
+    }
+    100% {
+        height: 50px;
+    }
+}
+
+@-webkit-keyframes announcement-open {
+    0% {
+        height: 0;
+        line-height: 0;
+    }
+    100% {
+        height: 50px;
+    }
+}
+
 #announcement-banner {
     display: flex;
     flex-flow: row nowrap;
     justify-content: center;
     align-items: center;
-    height: 50px;
     gap: 2vw;
     padding: 1vh 0;
     background-color: var(--highlight);
     transition: all 0.35s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+    height: 50px;
     color: var(--secondary);
+    overflow: hidden;
+    //animation: announcement-open 3s ease-in-out forwards;
+    //-webkit-animation: announcement-open 2s ease-in-out forwards;;
 
     span {
         display: flex;
@@ -42,6 +64,14 @@
             justify-content: center;
             align-items: center;
             transition: all 0.35s ease-out;
+            bottom: 0;
+            &::after {
+                content: ""
+            }
+        
+            &::before {
+                content: none;
+            }
         }
 
         a:hover {
@@ -66,9 +96,11 @@
         background-color: var(--lavender);
         color: var(--secondary-light);
 
-        .link-container a {
-            
+        .link-container a {            
             background-color: var(--accent);
+            &::after {
+                content: ""
+            }
         }
     }
 }
@@ -80,11 +112,8 @@
 }
 
 #megaphone {
-    animation-name: megaphone-move;
-    animation-timing-function: linear;
-    animation-duration: 3s;
-    animation-direction: alternate;
-    animation-iteration-count: infinite;
+    animation: megaphone-move linear 3s alternate infinite;
+    -webkit-animation: megaphone-move linear 3s alternate infinite;
 }
 
 @keyframes megaphone-move {
@@ -96,3 +125,14 @@
         transform:rotate(-15deg);
     }
 }
+
+@-webkit-keyframes megaphone-move {
+    0% {
+        transform:rotate(10deg);
+    }
+
+    100% {
+        transform:rotate(-15deg);
+    }
+}
+

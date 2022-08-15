@@ -1,20 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Red+Hat+Text:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
-
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  transition: color 0.35s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-  transition: background-color 0.35s cubic-bezier(0.445, 0.05, 0.55, 0.95);
-}
-
-* {
-  box-sizing: border-box;
-}
+@import url("https://use.typekit.net/tai7lqt.css");
 
 :root {
   --primary: #402679;
@@ -24,11 +10,93 @@ body {
   --link: #1677bf;
   --secondary-light: #fff;
   --tertiary: #eee;
+  --light: #ddd;
   --primary-alternate: #6429e6;
   --lavender: #a987f5;
   --highlight: #e5d9ff;
+  --dark: #252525;
 
   --hover-brightness: 0.85;
+  --responsive-threshold: 800px;
+}
+
+html { 
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  height: 100%;
+  width: 100%;
+  /*position: relative;*/
+  margin: 0;
+  font-family: "Red Hat Text", Roboto, -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;  
+  background-color: var(--light);
+  z-index: -5;
+}
+
+#app {
+  height: 100%;
+  min-height: 100vh;
+  background-color: #ddd;
+  transition: all 0.35s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+a {
+  color: var(--link);
+  overflow: hidden;
+  text-decoration: none;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  transition: 0.15s color cubic-bezier(0.455, 0.03, 0.515, 0.955);
+}
+
+a::after {
+  content: ">"
+}
+
+a::before {
+  overflow: hidden;
+  z-index: 100;
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 0.1em;
+  background-color: var(--link);
+  opacity: 1;
+  transition: opacity 300ms, transform 300ms;
+  overflow: hidden;
+  transform: translate3d(-100%, 0, 0);
+}
+
+a:hover::before, a:focus::before {
+  opacity: 1;
+  transform: translate3d(-10%, 0, 0);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(20vh);
+  visibility: hidden;
+  transition: opacity 0.6s ease-out, transform 1.2s ease-out;
+  will-change: opacity, visibility;
+}
+
+.fade-in-section.is-visible {
+  opacity: 1;
+  transform: none;
+  visibility: visible;
 }
 
 code {
@@ -38,4 +106,17 @@ code {
 
 #test {
   height: 2000px;
+}
+
+body.dark, #app.dark {
+  background-color: var(--dark);
+  color: white;
+}
+
+.dark a {
+  color: var(--accent-alternate);
+}
+
+.dark a::before {
+  background-color: var(--accent-alternate);
 }

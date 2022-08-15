@@ -6,7 +6,7 @@ import {FaCaretDown} from "react-icons/fa";
 import PropTypes from 'prop-types'
 import {BiMenu} from 'react-icons/bi'
 
-import { Link } from "react-router-dom"
+import { Link, NavLink, useLocation } from "react-router-dom"
 import { ThemeContext } from "../../Contexts/theme-context"
 import './Navbar.scss';
 
@@ -15,7 +15,7 @@ import './Navbar.scss';
 export function Dropdown(props){
     return (
         <div className="dropdown">
-            <button className="dropbtn">
+            <button className={"dropbtn " + props.className}>
                 {props.name}
                 <FaCaretDown />
             </button>
@@ -34,6 +34,8 @@ Dropdown.propTypes = {
 export default function Navbar(props){
     const theme = useContext(ThemeContext);
     const [showDropdown, setShowDropdown] = useState(false);
+    const location = useLocation()
+
     const toggleDropdown = () => {
         setShowDropdown(!showDropdown);
     }
@@ -50,17 +52,29 @@ export default function Navbar(props){
                 </div>
             </Link>
             <ul className={"navbar-dropdown " + (showDropdown ? "responsive " : "")}>
-                <li><Link to="about">About</Link></li>
-                <li>
-                    <Dropdown name="Membership">
-                        <Link to="membership/join">Join/Renew</Link>
-                        <Link to="membership/criteria">Criteria</Link>
-                        <Link to="membership/bylaws">Bylaws</Link>
+                <li className="list-item-dropdown">
+                    <Dropdown name="About" className={(location.pathname.split("/").includes("about") ? "nav-selected" : "")}>
+                        <NavLink className={({isActive}) => isActive ? "dropdown-selected" : ""} to="about/">About NTHS</NavLink>
+                        <NavLink className={({isActive}) => isActive ? "dropdown-selected" : ""} to="about/leadership">Leadership</NavLink>
                     </Dropdown>
                 </li>
-                <li><Link to="opportunities">Opportunities</Link></li>
-                <li><Link to="clubs">Clubs</Link></li>
-                <li><Link to="contact">Contact</Link></li>
+                {/* Janky fix until :has selector is implemented */}
+                <li className="list-item-dropdown">
+                    <Dropdown name="Membership" className={(location.pathname.split("/").includes("membership") ? "nav-selected" : "")}>
+                    <NavLink className={({isActive}) => isActive ? "dropdown-selected" : ""} to="membership/join">Join/Renew</NavLink>
+                        <NavLink className={({isActive}) => isActive ? "dropdown-selected" : ""} to="membership/benefits">Benefits</NavLink>
+                        <NavLink className={({isActive}) => isActive ? "dropdown-selected" : ""} to="membership/criteria">Criteria</NavLink>
+                        <NavLink className={({isActive}) => isActive ? "dropdown-selected" : ""} to="membership/bylaws">Bylaws</NavLink>
+                    </Dropdown>
+                </li>
+                <li><NavLink className={({ isActive }) => isActive ? "nav-selected" : ""} to="opportunities">Opportunities</NavLink></li>
+                <li className="list-item-dropdown">
+                    <Dropdown name="Clubs" className={(location.pathname.split("/").includes("clubs") ? "nav-selected" : "")}>
+                        <NavLink className={({isActive}) => isActive ? "dropdown-selected" : ""} to="clubs/">Member Clubs</NavLink>
+                        <NavLink className={({isActive}) => isActive ? "dropdown-selected" : ""} to="clubs/join">Join NTHS Whitney</NavLink>
+                    </Dropdown>
+                </li>
+                <li><NavLink className={({ isActive }) => isActive ? "nav-selected" : ""} to="contact">Contact</NavLink></li>
             </ul>
             <button onClick={props.changeTheme}>{theme.light ? <BsMoonFill id="moon" className="icon"/> : <BsSun id="sun" className="icon"/>}</button>
         </nav>
