@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.0dffacd7.css",
-    "main.js": "/static/js/main.5ac0c8ed.js",
-    "static/media/LogoDarkModeHorizontal.svg": "/static/media/LogoDarkModeHorizontal.b20838c0e6f6550bf587785670215557.svg",
-    "static/media/LogoLightModeHorizontal.svg": "/static/media/LogoLightModeHorizontal.c0e65e30494193278cf691d7cf71aa09.svg",
-    "index.html": "/index.html",
-    "static/media/x-lg.svg": "/static/media/x-lg.66ba13db539a76589c2b.svg"
+    "main.css": "/NTHS-website/static/css/main.c6311867.css",
+    "main.js": "/NTHS-website/static/js/main.11cce3f1.js",
+    "static/media/LogoDarkModeHorizontal.svg": "/NTHS-website/static/media/LogoDarkModeHorizontal.b20838c0e6f6550bf587785670215557.svg",
+    "static/media/LogoLightModeHorizontal.svg": "/NTHS-website/static/media/LogoLightModeHorizontal.c0e65e30494193278cf691d7cf71aa09.svg",
+    "index.html": "/NTHS-website/index.html",
+    "static/media/x-lg.svg": "/NTHS-website/static/media/x-lg.66ba13db539a76589c2b.svg"
   },
   "entrypoints": [
-    "static/css/main.0dffacd7.css",
-    "static/js/main.5ac0c8ed.js"
+    "static/css/main.c6311867.css",
+    "static/js/main.11cce3f1.js"
   ]
 }
